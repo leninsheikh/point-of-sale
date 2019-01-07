@@ -21,6 +21,7 @@ class actions extends React.Component {
             ...this.props.busket
         }
         this.props.onAddHold(newHold);
+        this.props.onOrderComplete();
         this.handleClose();
     }
 
