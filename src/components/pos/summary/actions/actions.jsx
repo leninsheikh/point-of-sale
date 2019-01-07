@@ -8,28 +8,33 @@ import Dialog from '../../../ui/dialogs/dialog';
 
 class actions extends React.Component {
     state = {
-        open: false
+        open: false,
+        name: ''
     }
 
 
     onHold = () => {
 
-        if (this.props.busket.length < 1) {
-            return;
-        }
+
         const newHold = {
             id: new Date(),
-            name: 'mamama',
-            products: this.props.busket
+            ...this.props.busket
         }
         this.props.onAddHold(newHold);
+        this.handleClose();
     }
+
     open = () => {
-        this.setState({ open: true })
+        if (this.props.busket.products.length < 1) {
+            return;
+        }
+        this.setState({...this.state, open: true })
     }
+
     handleClose = () => {
-        this.setState({ open: false });
+        this.setState({...this.state, open: false });
     };
+
     onDone = () => {
         if(this.props.busket.products.length === 0) return;
         const item = {
@@ -39,6 +44,14 @@ class actions extends React.Component {
         this.props.onDone(item)
         this.props.onOrderComplete()
     }
+
+    onInputChange = event => {
+        console.log(event.target.value)
+        this.setState({
+            ...this.state,
+             name: event.target.value
+        })
+    }
     render() {
 
         return (
@@ -47,7 +60,6 @@ class actions extends React.Component {
                     <div onClick={this.open}>
                         <DefaultButton icon="save"
                             variant="contained"
-                            onClose={this.handleClose}
                             type="submit"
                             text="hold"
                             color="primary"
@@ -70,6 +82,7 @@ class actions extends React.Component {
                 </Grid>
                 <Dialog open={this.state.open}
                     onConfirmed={this.onHold}
+                    onClose={this.handleClose}
                 ></Dialog>
             </Grid>
         )

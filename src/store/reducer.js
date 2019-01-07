@@ -4,7 +4,8 @@ const initialState = {
     busket: {
         totalPrice: 0,
         discount: 0,
-        products: []
+        products: [],
+        name: ''
     },
 
     summary: {
@@ -12,6 +13,8 @@ const initialState = {
     },
     holdBuskets: [
         {
+            totalPrice: 0,
+            discount: 0,
             id: '02safdfa1',
             name: 'Mr. React vuiya',
             products: [{ id: 1, name: 'pen', rate: 10, quantity: 2 }]
@@ -29,11 +32,12 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
+    let busketCopy = lodash.cloneDeep(state.busket)
     switch (action.type) {
         case 'HOLD':
             return {
                 ...state,
-                busket: [],
+                busket: initialState.busket,
                 holdBuskets: state.holdBuskets.concat(action.hold)
             };
         case "LOAD_BUSKET":
@@ -80,6 +84,12 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 busket: initialState.busket,
                 completedOrders: state.completedOrders.concat(action.item)
+            }
+        case 'NAME_UPDATE':
+        busketCopy.name = action.name;
+            return {
+                ...state,
+                busket: busketCopy
             }
         default:
             return state;
