@@ -11,15 +11,7 @@ const initialState = {
     summary: {
 
     },
-    holdBuskets: [
-        {
-            totalPrice: 0,
-            discount: 0,
-            id: '02safdfa1',
-            name: 'Mr. React vuiya',
-            products: [{ id: 1, name: 'pen', rate: 10, quantity: 2 }]
-        }
-    ],
+    holdBuskets: [],
     products: [
         { id: 1, name: 'pen', rate: 10 },
         { id: 2, name: 'book', rate: 340 },
@@ -43,7 +35,8 @@ const reducer = (state = initialState, action) => {
         case "LOAD_BUSKET":
             return {
                 ...state,
-                busket: action.busket
+                busket: action.busket,
+                holdBuskets: state.holdBuskets.filter(busket => busket.id !== action.busket.id)
             };
 
         case 'ADD_TO_BUSKET':

@@ -16,13 +16,13 @@ const holdBusket = props => {
         return (
             <div key={busket.id} onClick={(e) => onBusketSelect(e, busket)}>
                 <Grid container spacing={16} justify="center">
-                    <Grid item xs={8}>
+                    <Grid item xs={9}>
                         <CardHeader
                             style={{ cursor: 'pointer' }}
                             subheader={busket.name}>
                         </CardHeader>
                     </Grid>
-                    <Grid item xs={2}>
+                    <Grid item xs={3}>
                         <Button size="small" color="secondary" aria-label="Add">
                             <NavigationIcon />
                         </Button>
@@ -33,7 +33,7 @@ const holdBusket = props => {
         )
     })
     return (
-        <Card style={{ marginTop: '10px' }}>
+        <Card style={{ marginTop: '10px', minHeight: '100px' }}>
             <h3 style={{ margin: '7px 0px 0px 17px', fontWeight: 'normal' }}>
                 Hold Busket
             </h3>

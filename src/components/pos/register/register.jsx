@@ -12,7 +12,7 @@ const onFormSubmit = (data) => {
 }
 const Register = () => {
     return (
-        <Paper style={{overflow: "auto"}}>
+        <Paper style={{overflow: "auto", height: '460px'}}>
             <CardContent>
                 <Grid container spacing={16}>
                     <Grid item xs={12}>
