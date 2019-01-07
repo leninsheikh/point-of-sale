@@ -8,24 +8,19 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 export default class FormDialog extends React.Component {
-  state = {
-    open: this.props.open,
-  };
 
   handleClickOpen = () => {
     this.setState({ open: true });
   };
 
-  handleClose = () => {
-    this.setState({ open: false });
-  };
+
 
   render() {
     return (
       <div>
         <Dialog
-          open={this.state.open}
-          onClose={this.handleClose}
+          open={this.props.open}
+          onClose={this.props.handleClose}
           aria-labelledby="form-dialog-title"
         >
           <DialogTitle id="form-dialog-title">Hold Busket</DialogTitle>
@@ -43,7 +38,7 @@ export default class FormDialog extends React.Component {
             />
           </DialogContent>
           <DialogActions>
-            <Button  onClick={this.handleClose} color="primary">
+            <Button  onClick={this.props.handleClose} color="primary">
               Cancel
             </Button>
             <Button onClick={this.props.onConfirmed} color="primary">

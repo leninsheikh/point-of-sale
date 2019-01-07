@@ -2,10 +2,10 @@ import React from 'react';
 import { Grid } from '@material-ui/core';
 
 import Register from '../components/pos/register/register';
-import HoldBusket from './../components/pos/hold/holdBusket';
+// import HoldBusket from '../components/pos/hold/holdBusket';
 import Summery from '../components/pos/summary/summary';
 
-const test = () => {
+const pos = () => {
     return (
         <div>
             <Grid container spacing={16} >
@@ -21,4 +21,4 @@ const test = () => {
     )
 }
 
-export default test;
+export default pos;

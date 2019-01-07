@@ -8,14 +8,13 @@ import Dialog from '../../../ui/dialogs/dialog';
 
 class actions extends React.Component {
     state = {
-        open : false
+        open: false
     }
 
 
     onHold = () => {
 
-        if(this.props.busket.length < 1) {
-            console.log(this.props.busket.length);
+        if (this.props.busket.length < 1) {
             return;
         }
         const newHold = {
@@ -26,27 +25,29 @@ class actions extends React.Component {
         this.props.onAddHold(newHold);
     }
     open = () => {
-        this.setState({open: true})
-        console.log(this.state);
+        this.setState({ open: true })
     }
-
+    handleClose = () => {
+        this.setState({ open: false });
+    };
     onDone = () => {
+        if(this.props.busket.products.length === 0) return;
         const item = {
             id: new Date(),
             ...this.props.busket
         }
         this.props.onDone(item)
-
-        console.log(item)
+        this.props.onOrderComplete()
     }
-    render () {
+    render() {
 
         return (
-            <Grid container spacing={16} justify="center">
-                <Grid item xs={4}>
+            <Grid container spacing={32} justify="center">
+                <Grid item xs={5}>
                     <div onClick={this.open}>
                         <DefaultButton icon="save"
                             variant="contained"
+                            onClose={this.handleClose}
                             type="submit"
                             text="hold"
                             color="primary"
@@ -55,7 +56,7 @@ class actions extends React.Component {
                         </DefaultButton>
                     </div>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={5}>
                     <div onClick={this.onDone}>
                         <DefaultButton icon="save"
                             variant="contained"
@@ -84,10 +85,10 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return{
-        onAddHold : (newHold) => dispatch({type: 'HOLD', hold: newHold}),
-        onDone: (item) => dispatch({type: 'PAYMENT_DONE', item: item})
+    return {
+        onAddHold: (newHold) => dispatch({ type: 'HOLD', hold: newHold }),
+        onDone: (item) => dispatch({ type: 'PAYMENT_DONE', item: item })
     }
-  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(actions);

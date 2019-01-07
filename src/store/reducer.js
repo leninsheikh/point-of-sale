@@ -1,8 +1,5 @@
 import lodash from 'lodash'
 
-import { getPayble, getReturnAmount, getSubTotal } from '../services/SummaryService'
-
-
 const initialState = {
     busket: {
         totalPrice: 0,
@@ -28,7 +25,7 @@ const initialState = {
         { id: 4, name: 'beer', rate: 850 }
     ],
 
-    completeSell: []
+    completedOrders: []
 }
 
 const reducer = (state = initialState, action) => {
@@ -82,7 +79,7 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 busket: initialState.busket,
-                completeSell: state.completeSell.concat(action.item)
+                completedOrders: state.completedOrders.concat(action.item)
             }
         default:
             return state;

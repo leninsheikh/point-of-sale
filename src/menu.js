@@ -4,8 +4,8 @@ import { MenuItemLink, getResources } from 'admin-on-rest';
 
 const Menu = ({ resources, onMenuTap }) => (
     <div>
-        <MenuItemLink to="/" primaryText="Point of Sale" onClick={onMenuTap} />
-
+        <MenuItemLink to="/" primaryText="Dashboard" onClick={onMenuTap} />
+        <MenuItemLink to="/pos" primaryText="Point of Sale" onClick={onMenuTap} />
     </div>
 );
 

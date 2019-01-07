@@ -26,14 +26,6 @@ const styles = theme => ({
 });
 
 
-// const getSubTotal = products => {
-//     let sum = 0;
-//     products.map( product => {
-//         sum += (product.rate * product.quantity);
-//     })
-//     return sum;
-// }
-
 const getPayble = (total, discount = 0) => {
     console.log(total);
     if (discount === 0) return total;
@@ -53,11 +45,14 @@ class summary extends React.Component {
         this.props.onChangeDiscount(discount)
     }
 
+    clearForm = () => {
+        this.setState({paid: 0})
+    }
+
     onPaidChange = (event) => {
         this.setState({ paid: event.target.value })
     }
     render() {
-        const { classes } = this.props;
         return (
             <Card>
                 <CardContent>
@@ -153,7 +148,7 @@ class summary extends React.Component {
                     </Grid>
                 </CardContent>
                 <CardActions>
-                <Actions></Actions>
+                    <Actions onOrderComplete={this.clearForm}></Actions>
                 </CardActions>
             </Card>
 
